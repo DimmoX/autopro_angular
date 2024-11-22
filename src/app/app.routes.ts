@@ -6,11 +6,11 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirige la raíz a home
+    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirige a home cuando se apunte a la raíz
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'services', component: ServicesComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
-    { path: '**', redirectTo: 'home', pathMatch: 'full' } // Ruta comodín al final
+    { path: '**', redirectTo: 'home', pathMatch: 'full' } // Ruta comodín, si se apunta a una ruta no definida, redirige a home
 ];
