@@ -1,0 +1,76 @@
+
+.navbar {
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar .collapse ul button{
+    position: relative;
+    border-radius: 5%;
+    margin-left: 5px;
+}
+
+.navbar .collapse ul button:not(:last-child){
+    border-right: var(--primary) 2px solid;
+}
+
+.navbar .collapse ul button:last-child{
+    margin-right: 5px;
+}
+
+.navbar .collapse ul button:hover{
+    background-color: white; /* rgba(238, 233, 233, 0.875); /* Opcional: color de fondo al pasar el mouse */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Opcional: sombra al pasar el mouse */
+}
+
+@media(max-width: 500px){
+    .navbar .collapse ul button{
+        position: relative;
+        border-radius: 5%;
+        margin-left: 5px;
+    }
+    
+    .navbar .collapse ul button:not(:last-child){
+        border-right: var(--primary) 2px solid;
+    }
+    
+    .navbar .collapse ul button:last-child{
+        margin-right: 5px;
+    }
+
+    .nav-item{
+        font-size: 14px;
+    }
+
+    .navbar-collapse {
+        transition: none !important; /* Desactiva cualquier animación en el contenedor */
+    }
+}
+
+@media(max-width: 380px){
+
+    .navbar .collapse ul button{
+        position: relative;
+        border-radius: 5%;
+        margin-left: 1px;
+        
+    }
+    
+    .navbar .collapse ul button:not(:last-child){
+        border: var(--primary) 1px solid;
+        border-left: none;
+    }
+    
+    .navbar .collapse ul button:last-child{
+        margin-right: 2px;
+    }
+    
+    .nav-item{
+        font-size: 13px;
+    }
+
+    .navbar-collapse {
+        transition: none !important; /* Desactiva cualquier animación en el contenedor */
+    }
+    
+}

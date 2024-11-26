@@ -7,36 +7,121 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light transparent fixed-top">
-        <a class="navbar-brand" href="../index.html">
-            <img src="../assets/img/logo.webp" alt="Logo" width="120" height="75">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav ml-auto d-flex flex-row justify-content-center">
-                <li class="nav-item"><a class="nav-link" routerLink="/home">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/about">Sobre Nosotros</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/services">Servicios</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/contact">Contacto</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/login">Iniciar Sesión</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="ms-5 me-5">
+    <section class="mt-5 pt-5 ms-5 me-5">
         <app-header textHeader=
             '
                 <h1>Nuestros Servicios</h1>
                 <p>Te contamos algunos de nuestros servicios</p>
             '
         />
+        <main class="container mt-3">
+            <p>
+                En <strong>AutoPro</strong>, entendemos que tu vehículo no solo es un medio de transporte, sino una parte esencial de tu vida. Por eso, ofrecemos una gama completa de servicios diseñados para mantenerlo en perfectas condiciones, prolongar su vida útil y garantizar tu seguridad en cada kilómetro recorrido. 
+            </p>
+            <p>
+                <strong>Descubre nuestros servicios principales:</strong>
+            </p>
+            <p>
+                <dt>Mantenimiento por Kilometraje</dt>
+                Mantener tu auto en óptimas condiciones es clave para su rendimiento. En <strong>AutoPro</strong>, realizamos un mantenimiento integral adaptado a cada etapa del kilometraje de tu vehículo. Nuestros expertos revisan desde el motor y frenos hasta la suspensión y neumáticos, asegurándote un desempeño impecable y confiable.
+            </p>
+            <p>
+                <strong>¿Por qué elegirnos?</strong>
+            </p>
+            <ul>
+                <li>Inspección detallada de más de 20 puntos clave.</li>
+                <li>Uso de piezas originales y repuestos de alta calidad.</li>
+                <li>Asesoría personalizada para el cuidado de tu auto.</li>
+                <li>Servicio de Lubricación y Cambio de Líquidos</li>
+            </ul>
+            <strong>¿Sabías que un cambio de aceite a tiempo puede prevenir daños costosos?</strong> 😱 
+            <p>
+                En <strong>AutoPro</strong>, usamos lubricantes de las mejores marcas para optimizar el rendimiento de tu motor. <br/> 
+                También revisamos y cambiamos <strong>líquidos esenciales</strong> como el <strong>refrigerante</strong>, <strong>líquido de frenos</strong> y <strong>dirección hidráulica</strong>, garantizando un funcionamiento fluido y seguro.
+            </p>
+            <div class="row container-lub">
+                <div class="col-lg-6">
+                    <p>
+                        <strong>Beneficios de nuestro servicio:</strong>
+                    </p>
+                    <ul>
+                        <li>Aceites y líquidos de alta calidad certificados.</li>
+                        <li>Cambio rápido y eficiente.</li>
+                        <li>Verificación de niveles para evitar desgastes prematuros.</li>
+                        <li> Desabolladura y Pintura</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="../assets/img/lubricacion-auto.webp" alt="lubricacion" class="img-lub">
+                </div>
+            </div>
+            <div class="row mt-2 container-abolla">
+                <div class="col-lg-6 text-center order-2 order-lg-1"> <!-- la imagen ira segundo en pantallas pequeñas y primero en pantallas grandes -->
+                    <img src="../assets/img/rayon.webp" alt="desabolladura" class="img-abolla">
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2"> <!-- la imagen ira priemro en pantallas pequeñas y segundo en pantallas grandes -->
+                    <p>
+                        <strong>¿Tu auto tiene abolladuras o rayones?</strong> 😞
+                    </p>
+                    <p>
+                        Deja tu vehículo como nuevo con nuestro servicio especializado en reparación de carrocería. 
+                        <br/>
+                        Desde pequeñas abolladuras hasta trabajos de pintura completos, nuestro equipo de profesionales utiliza herramientas de última generación para garantizar resultados impecables.
+                    </p>
+                    <p>
+                        <strong>Lo que ofrecemos:</strong>
+                    </p>
+                    <ul>
+                        <li>Reparación de abolladuras sin dañar la pintura original.</li>
+                        <li>Pintura automotriz de calidad premium con acabados perfectos.</li>
+                        <li>Protección contra corrosión para mantener la durabilidad de la carrocería.</li>
+                    </ul>
+                </div>
+            
+            </div>
+
+            <div class="linea mt-3 mb-3"></div>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <p>
+                        <strong>¿Por qué AutoPro es tu mejor opción? 🤔</strong>
+                    </p>
+                    <p>
+                        En <strong>AutoPro</strong>, no solo reparamos vehículos; creamos relaciones de confianza con nuestros clientes. 
+                        <br/>
+                        Nuestro equipo está compuesto por técnicos certificados con años de experiencia y pasión por lo que hacen. 
+                        <br/>
+                        Utilizamos tecnología avanzada y productos de calidad que garantizan resultados duraderos.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <p>
+                        <strong>Además, ofrecemos:</strong>
+                    </p>
+                    <ul>
+                        <li>Precios justos y transparentes: Sin sorpresas ni costos ocultos.</li>
+                        <li>Asesoría profesional: Resolvemos todas tus dudas antes y después del servicio.</li>
+                        <li>Compromiso con el medio ambiente: Utilizamos prácticas sostenibles y desechamos los residuos de forma responsable.</li>
+                    </ul>
+                </div>
+
+            </div>
+            <p>
+                <strong>¿Listo para darle a tu vehículo el cuidado que merece?</strong>
+            </p>
+            <p>
+                <strong>Visítanos o agenda tu cita en línea 🤩</strong>
+            </p>
+            <div class="text-center">
+                <p>
+                    <strong>En <strong>AutoPro</strong>, tu satisfacción es nuestra prioridad. 🚘💨</strong>
+                </p>
+            </div>
+        </main>
     </section>
    
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-        <p class="mb-0">&copy; 2024 Nombre del Sitio. Todos los derechos reservados.</p>
-    </footer>
+
 
 </body>
 </html>

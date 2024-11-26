@@ -1,1 +1,28 @@
-<p>registro-cliente works!</p>
+
+<form id="register-form">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" required>
+    </div>
+    <div class="mb-3">
+        <label for="email-registro" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="email-registro" placeholder="Ingresa tu correo electrónico" required>
+        <div class="invalid-feedback">Por favor, ingrese un email válido.</div>
+    </div>
+    <div class="mb-3">
+        <label for="fecha-nac" class="form-label">Fecha de Nacimiento</label>
+        <input type="date" class="form-control" id="fecha-nac" required>
+        <div class="invalid-feedback">Debes ser mayor de 18 años.</div>
+    </div>
+    <div class="mb-3">
+        <label for="passwd-registro" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" id="passwd-registro" placeholder="Ingresa tu contraseña" required>
+        <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, una mayúscula, un símbolo y al menos un número.</div>
+    </div>
+    <div class="mb-3">
+        <label for="confirmpass-registro" class="form-label">Confirmar Contraseña</label>
+        <input type="password" class="form-control" id="confirmpass-registro" placeholder="Confirma tu contraseña" required>
+        <div class="invalid-feedback">La contraseña no coincide.</div>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 mb-3">Registrarse</button>
+</form>

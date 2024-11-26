@@ -8,25 +8,9 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light transparent fixed-top">
-        <a class="navbar-brand" href="../index.html">
-            <img src="../assets/img/logo.webp" alt="Logo" width="120" height="75">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav ml-auto d-flex flex-row justify-content-center">
-                <li class="nav-item"><a class="nav-link" routerLink="/home">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/about">Sobre Nosotros</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/services">Servicios</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/contact">Contacto</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/login">Iniciar Sesión</a></li>
-            </ul>
-        </div>
-    </nav>
+    <app-nav />
     
-    <section class="ms-5 me-5">
+    <section class="mt-5 pt-5 ms-5 me-5">
         <app-header textHeader=
             '
                 <h1>Ingresa a nuestro portal</h1>
@@ -40,153 +24,46 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card shadow">
                             <div class="card-body" id="inicio-login">
-                                <h3 class="text-center mb-4">Iniciar Sesión</h3>
+                                <h3 class="text-center mb-4">{{dinamicTitleCardLogin()}}</h3>
 
                                 <!-- Inicio de sesión Cliente -->
-                                <button
-                                    *ngIf="!showLoginClientForm && !showLoginEmployeeForm"
-                                    class="btn btn-primary w-100 mb-3"
-                                    (click)="toggleLoginClientForm()"
-                                >
+                                <button *ngIf="!showLoginClientForm && !showLoginEmployeeForm && !showCreateAccountForm" class="btn btn-primary w-100 mb-3" (click)="toggleLoginClientForm()">
                                     ¿Eres Cliente?
                                 </button>
                                 <div *ngIf="showLoginClientForm">
-                                    <app-login-form ></app-login-form>
+                                    <app-login-form 
+                                        tipoLista = 'clientes'
+                                    />
 
                                     <p class="w-100 text-center">¿No tienes una cuenta? 
-                                        <button class="btn bg-transparent text-primary ps-0 btn-link" (click)='crearCuentaCliente()'>Reg&iacute;strate</button>
-                                    </p>
-    
-                                    <button
-                                        class="btn btn-primary w-100"
-                                        (click)="toggleLoginClientForm()"
-                                    >
+                                        <button class="btn bg-transparent text-primary ps-0 btn-link" (click)="toggleCreateAccount()">Regístrate</button>
+                                    </p>                                    
+
+                                    <button class="btn btn-primary w-100" (click)="toggleLoginClientForm()">
+                                        Volver
+                                    </button>
+                                </div>
+                                <div *ngIf="showCreateAccountForm">
+                                    <app-registro-cliente/>
+                                    <button class="btn btn-primary w-100" (click)="toggleReturnLoginClientForm()">
                                         Volver
                                     </button>
                                 </div>
                                 
                             <!-- Inicio de sesión Colaborador --> 
-
-                                <button
-                                    *ngIf="!showLoginEmployeeForm && !showLoginClientForm"
-                                    class="btn btn-primary w-100 mb-3"
-                                    (click)="toggleLoginEmployeeForm()"
-                                >
+                                <button *ngIf="!showLoginClientForm && !showLoginEmployeeForm && !showCreateAccountForm" class="btn btn-primary w-100 mb-3" (click)="toggleLoginEmployeeForm()">
                                     ¿Eres Colaborador?
                                 </button>
-
                                 <div *ngIf="showLoginEmployeeForm">
-                                    <p> <!-- Etiqueta para uso estetico -->
-                                        <app-login-form ></app-login-form>
+                                    <p>
+                                        <app-login-form 
+                                        tipoLista = 'colaboradores'
+                                        />
                                     </p>
-
-                                    <button
-                                        class="btn btn-primary w-100"
-                                        (click)="toggleLoginEmployeeForm()"
-                                    >
+                                    <button class="btn btn-primary w-100" (click)="toggleLoginEmployeeForm()">
                                         Volver
                                     </button>
-    
                                 </div>
-                            </div>
-
-                            <!-- ingreso datos inicio sesión cliente -->
-    
-                            <div class="card-body d-none" id="login-cliente">
-                                <h3 class="text-center mb-4">Inicio Sesi&oacute;n Cliente</h3>
-                                <form id="form-cliente">
-                                    <div class="mb-3">
-                                        <label for="email-cliente" class="form-label">Correo Electr&oacute;nico</label>
-                                        <input type="email" class="form-control" id="email-cliente" placeholder="ejemplo@correo.com" required>
-                                        <div class="invalid-feedback">Por favor, ingrese un email válido.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="password-cliente" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" id="password-cliente" required>
-                                        <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, una mayúscula, un símbolo y al menos un número.</div>
-                                    </div>
-                                    <div class="d-grid mb-3">
-                                        <button type="submit" class="btn btn-primary">Ingresar</button>
-                                    </div>
-                                </form>
-    
-                                <button class="btn btn-primary w-100 mb-3" onclick='showLogin("cliente")'>Atr&aacute;s</button>
-                                <button class=" btn w-100 text-primary bg-transparent btn-link" onclick='showOption("cliente", "restorepass")'>¿Olvidaste tu contrase&ntilde;a?</button>
-                                <p class="w-100 text-center">¿No tienes una cuenta? 
-                                    <button class="btn bg-transparent text-primary ps-0 btn-link" onclick='showOption("cliente", "registro")'>Reg&iacute;strate</button>
-                                </p>
-                            </div>
-    
-                            <!-- Ingreso datos inicio sesión colaborador -->
-                            <div class="card-body d-none" id="login-empleado">
-                                <h3 class="text-center mb-4">Iniciar Sesi&oacute;n Colaborador</h3>
-                                <form id="form-empleado">
-                                    <div class="mb-3">
-                                        <label for="email-empleado" class="form-label">Correo Electr&oacute;nico</label>
-                                        <input type="email" class="form-control" id="email-empleado" placeholder="ejemplo@correo.com" required>
-                                        <div class="invalid-feedback">Por favor, ingrese un email válido.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="password-empleado" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" id="password-empleado" required>
-                                        <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, una mayúscula, un símbolo y al menos un número.</div>
-                                    </div>
-                                    <div class="d-grid mb-3">
-                                        <button type="submit" class="btn btn-primary">Ingresar</button>
-                                    </div>
-                                </form>
-    
-                                <button class="btn btn-primary w-100 mb-3" onclick='showLogin("empleado")'>Atr&aacute;s</button>
-                                <button class="btn w-100 text-primary bg-transparent btn-link" onclick=showRecupContra()>¿Olvidaste tu contrase&ntilde;a?</button>
-                            </div>
-    
-                            <!-- Registrar cliente nuevo -->
-                            <div *ngIf="" class="card-body" id="form-registro">
-                                <h2>Registro de Usuario</h2>
-                                <form id="register-form">
-                                    <div class="mb-3">
-                                        <label for="nombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="email-registro" class="form-label">Correo Electrónico</label>
-                                        <input type="email" class="form-control" id="email-registro" placeholder="Ingresa tu correo electrónico" required>
-                                        <div class="invalid-feedback">Por favor, ingrese un email válido.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="fecha-nac" class="form-label">Fecha de Nacimiento</label>
-                                        <input type="date" class="form-control" id="fecha-nac" required>
-                                        <div class="invalid-feedback">Debes ser mayor de 18 años.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="passwd-registro" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" id="passwd-registro" placeholder="Ingresa tu contraseña" required>
-                                        <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, una mayúscula, un símbolo y al menos un número.</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="confirmpass-registro" class="form-label">Confirmar Contraseña</label>
-                                        <input type="password" class="form-control" id="confirmpass-registro" placeholder="Confirma tu contraseña" required>
-                                        <div class="invalid-feedback">La contraseña no coincide.</div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100 mb-3">Registrarse</button>
-                                </form>
-    
-                                <button class="btn btn-primary w-100" onclick='showLogin("registro")'>Atr&aacute;s</button>
-                            </div>
-
-                            <!-- Recuperar contraseña -->
-                            <div class="card-body d-none" id="restorepass">
-                                <h2>Recuperar Contrase&ntilde;a</h2>
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Correo Electrónico</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico" required>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100 mb-3" onclick="(e) => restorePass(e.target.email)">Recuperar</button>
-                                </form>
-    
-                                <button class="btn btn-primary w-100" onclick='showLogin("restorepass")'>Atr&aacute;s</button>
-
                             </div>
                         </div>
                     </div>
@@ -195,9 +72,7 @@
         </main>
     </section>
 
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-        <p class="mb-0">&copy; 2024 Nombre del Sitio. Todos los derechos reservados.</p>
-    </footer>
-    
+    <app-footer />
+
 </body>
 </html>

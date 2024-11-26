@@ -1,0 +1,11 @@
+.linea-contact{
+    width: 70%;
+    height: 5px;
+    background-color: #e2e8f3;
+}
+
+.card{
+
+    background-color: white; /* rgba(238, 233, 233, 0.875); /* Opcional: color de fondo al pasar el mouse */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Opcional: sombra al pasar el mouse */
+}

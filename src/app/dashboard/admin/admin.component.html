@@ -1,1 +1,124 @@
-<p>admin works!</p>
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>AutoPro - administrador</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+    </head>
+
+    <body>
+        <app-nav/>
+
+        <section class="mt-5 pt-5 ms-5 me-5">
+           <app-header textHeader='
+                <h1>Bienvenido al Portal Administrador</h1>
+            '/>
+            
+            <main class="mt-3">
+                    <h2>Gestion de Servicio</h2>
+                    <p>En esta sección podrás gestionar los servicios.</p>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre Cliente</th>
+                            <th scope="col">modelo Veh&iacute;culo</th>
+                            <th scope="col">Patente</th>
+                            <th scope="col">Tipo De Servicio</th>
+                            <th scope="col">Fecha Ingreso</th>
+                            <th scope="col">T&eacute;cnico Asignado</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Orden Servicio</th>
+                            <th scope="col">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td><input type="text" value="Cristian Mansilla" disabled /></td>
+                            <td><input type="text" value="Toyota Yaris" disabled /></td>
+                            <td><input type="text" id="patente" value="AB1234" disabled /></td>
+                            <td><input type="text" value="Cambio de aceite" disabled /></td>
+                            <td><input type="date" value="2024-11-04" disabled /></td>
+                            <td><input type="text" value="Javier Sanchez" disabled /></td>
+                            <td><input type="text" value="Pendiente" disabled /></td>
+                            <td class="text-center">
+                                <button class="btn btn-link" >
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-link" >
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-link" (click)="eliminarFila($event)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td><input type="text" value="Jacob" disabled /></td>
+                            <td><input type="text" value="Nissan Kicks" disabled /></td>
+                            <td><input type="text" id="patente" value="CD1234" disabled /></td>
+                            <td><input type="text" value="Mantenci&oacute;n 20.000KM" disabled /></td>
+                            <td><input type="date" value="2024-11-04" disabled /></td>
+                            <td><input type="text" value="@fat" disabled /></td>
+                            <td><input type="text" value="@mdo" disabled /></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-link" >
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-link" >
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td><input type="text" value="Larry the Bird" disabled /></td>
+                            <td><input type="text" value="Chevrolet Spark" disabled /></td>
+                            <td><input type="text" id="patente" value="EF1234" disabled /></td>
+                            <td><input type="text" value="Mantenci&oacute;n 10.000KM" disabled /></td>
+                            <td><input type="date" value="2024-11-04" disabled /></td>
+                            <td><input type="text" value="@mdo" disabled /></td>
+                            <td><input type="text" value="@twitter" disabled /></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-link" >
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-link" >
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+            </main>
+        </section>
+
+        <app-footer/>
+    </body>
+</html>

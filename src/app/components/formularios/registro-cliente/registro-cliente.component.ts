@@ -9,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class RegistroClienteComponent {
 
+  registroCliente(){
+    console.log('Registro de cliente');
+  }
+
 }

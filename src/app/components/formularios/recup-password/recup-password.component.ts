@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -14,32 +14,30 @@ import { User } from '../../../models/user.model';
 })
 
 
-export class RecupPasswordComponent implements AfterViewInit{
+export class RecupPasswordComponent{
+
   constructor(private localStorageService: LocalStorageService) {}
 
   email: string = '';
   password: string | null = null;
   errorMessage: string | null = null;
-  private bootstrap: any;
+  private bootstrap: any = (window as any)['bootstrap'];
   static openModal: any;
-
-  ngAfterViewInit() {
-    // Asegura que el objeto de Bootstrap esté disponible
-    this.bootstrap = (window as any)['bootstrap'];
-  }
+  tipoAcceso: string | undefined;
 
   openModal() {
-    if (!this.bootstrap) {
-      console.error('Bootstrap no está definido. Asegúrate de que el script está cargado.');
-      return;
-    }
     const modalElement = document.getElementById('recoverPasswordModal');
     const modal = new this.bootstrap.Modal(modalElement);
     modal.show();
   }
 
   recoverPassword(email: string) {
-    let listUsers = this.localStorageService.getItem('users');
+
+    console.log(this.tipoAcceso)
+
+    let listUsers = this.tipoAcceso ? this.localStorageService.getItem(this.tipoAcceso) : null;
+
+    console.log("lista de usuarios", " tipo: " + this.tipoAcceso + " Lista: " + (listUsers ? JSON.stringify(listUsers) : 'null'));
 
     if (Array.isArray(listUsers)) {
       listUsers.forEach((user: User) => {

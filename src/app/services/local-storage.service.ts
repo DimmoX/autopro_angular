@@ -9,7 +9,6 @@ export class LocalStorageService {
   constructor() {
     // Verifica si estás en un entorno de navegador
     this.isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
-    console.log('isBrowser:', this.isBrowser);
   }
 
   // Guardar datos en localStorage

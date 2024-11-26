@@ -1,0 +1,19 @@
+
+<nav class="navbar navbar-expand-lg navbar-light transparent fixed-top">
+    <a class="navbar-brand" routerLink="/home">
+        <img src="assets/img/logo.webp" alt="Logo" width="125" height="70">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav ml-auto d-flex flex-row justify-content-center">
+            <button class="nav-item btn"><a class="nav-link" routerLink="/home">Inicio</a></button>
+            <button class="nav-item btn"><a class="nav-link" routerLink="/about">Nosotros</a></button>
+            <button class="nav-item btn"><a class="nav-link" routerLink="/services">Servicios</a></button>
+            <button class="nav-item btn"><a class="nav-link" routerLink="/contact">Contacto</a></button>
+            <button class="nav-item btn" *ngIf="!statusLogin"><a class="nav-link" routerLink="/login">Iniciar Sesión</a></button>
+            <button class="nav-item btn" *ngIf="statusLogin"><a class="nav-link" (click)="logout()">Cerrar Sesión</a></button>
+        </ul>
+    </div>
+</nav>

@@ -5,27 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoPro - Nosotros</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-lg navbar-light transparent fixed-top">
-        <a class="navbar-brand" routerLink="/home">
-            <img src="assets/img/logo.webp" alt="Logo" width="120" height="75">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav ml-auto d-flex flex-row justify-content-center">
-                <li class="nav-item"><a class="nav-link" routerLink="/home">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/about">Sobre Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/services">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/contact">Contacto</a></li>
-                    <li class="nav-item"><a class="nav-link" routerLink="/login">Iniciar Sesión</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="ms-5 me-5">
+    <section class="flex-grow-1 mt-5 pt-5 ms-5 me-5">
         
         <app-header textHeader=
             '
@@ -34,24 +16,23 @@
             '
         />
 
-        <div class="row mt-3">
-            <div class="col-lg-6">
-                <img src="../assets/img/taller.webp" alt="Nosotros" class="img-fluid">
-            </div>
-            <div class="col-lg-6">
-                <h2>¿Quiénes somos?</h2>
-                <p>Somos una empresa dedicada a la reparación y mantenimiento de vehículos. Contamos con un equipo de profesionales altamente capacitados y con años de experiencia en el sector.</p>
-                <h2>Nuestra Misión</h2>
-                <p>Brindar un servicio de calidad y confianza a nuestros clientes, garantizando la satisfacción de sus necesidades y la seguridad de sus vehículos.</p>
-                <h2>Nuestra Visión</h2>
-                <p>Ser reconocidos como el taller de reparación y mantenimiento de vehículos líder en el mercado, por la calidad de nuestros servicios y la excelencia de nuestro equipo de trabajo.</p>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="../assets/img/taller.webp" alt="Nosotros" class="img-fluid">
+                </div>
+                <div class="col-lg-6">
+                    <h2>¿Quiénes somos?</h2>
+                    <p>Somos una empresa dedicada a la reparación y mantenimiento de vehículos. Contamos con un equipo de profesionales altamente capacitados y con años de experiencia en el sector.</p>
+                    <h2>Nuestra Misión</h2>
+                    <p>Brindar un servicio de calidad y confianza a nuestros clientes, garantizando la satisfacción de sus necesidades y la seguridad de sus vehículos.</p>
+                    <h2>Nuestra Visión</h2>
+                    <p>Ser reconocidos como el taller de reparación y mantenimiento de vehículos líder en el mercado, por la calidad de nuestros servicios y la excelencia de nuestro equipo de trabajo.</p>
+                </div>
             </div>
         </div>
+        
     </section>
-   
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-        <p class="mb-0">&copy; 2024 Nombre del Sitio. Todos los derechos reservados.</p>
-    </footer>
 
 </body>
 </html>

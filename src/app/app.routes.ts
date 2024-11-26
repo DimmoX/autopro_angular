@@ -4,13 +4,22 @@ import { LoginComponent } from './pages/login/login.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
+/**
+ * @description este arreglo contiene las rutas de la aplicación
+ * - `''` redirige a 'home'
+ * - `**` es una ruta comodín que redirige a home si no se encuentra la ruta solicitada.
+ * @type {Routes}
+ * @const routes
+ */
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirige a home cuando se apunte a la raíz
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'services', component: ServicesComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
-    { path: '**', redirectTo: 'home', pathMatch: 'full' } // Ruta comodín, si se apunta a una ruta no definida, redirige a home
+    { path: 'dashboard/:role', component: DashboardComponent },
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

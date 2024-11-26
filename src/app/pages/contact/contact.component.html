@@ -7,36 +7,16 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light transparent fixed-top">
-        <a class="navbar-brand" href="../index.html">
-            <img src="assets/img/logo.webp" alt="Logo" width="120" height="75">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav ml-auto d-flex flex-row justify-content-center">
-                <li class="nav-item"><a class="nav-link" routerLink="/home">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/about">Sobre Nosotros</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/services">Servicios</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/contact">Contacto</a></li>
-                <li class="nav-item"><a class="nav-link" routerLink="/login">Iniciar Sesión</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="ms-5 me-5">
+    <app-nav />
+    <section class="mt-5 pt-5 ms-5 me-5">
         <app-header textHeader=
             '
                 <h1>Contactanos</h1>
                 <p>Estamos para atenderte</p>
             '
         />
+        <app-contact-form />
     </section>
-   
-    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
-        <p class="mb-0">&copy; 2024 Nombre del Sitio. Todos los derechos reservados.</p>
-    </footer>
-
+    <app-footer />
 </body>
 </html>

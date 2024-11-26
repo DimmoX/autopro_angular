@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+
 import { HeaderComponent } from '../../components/header/header.component';
+import { NavComponent } from '../../components/nav/nav.component';
+import { ContactFormComponent } from '../../components/formularios/contact-form/contact-form.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [RouterLink, HeaderComponent],
+  imports: [NavComponent, HeaderComponent, FooterComponent,  ContactFormComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
   host: {ngSkipHydration: 'true'},

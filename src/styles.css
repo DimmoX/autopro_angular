@@ -1,68 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-    padding-top: 3%; /* Ajusta este valor según la altura del navbar */
-    padding-bottom: 60px; /* se asigna el margen de separación entre el footer y el contenido */
-}
 
-.card {
+
+/* .card {
     margin-bottom: 60px;
-}
-
+} */
+ 
 .bg-primary{
-    background-color: #12274b !important;
+    background-color: var(--primary) !important;
 }
 
 .btn-link {
     text-decoration: none;
 }
 
-.navbar {
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.8);
+.container-lub {
+    height: 1fr;
+    display: flex;
+    overflow: hidden;
 }
 
-.navbar .collapse ul li{
-    position: relative;
-    border-radius: 5%;
-    margin-left: 5px;
+.img-lub {
+    max-height: 100%;
+    width: 40%;
+    object-fit: contain;
 }
 
-.navbar .collapse ul li:not(:last-child){
-    border-right: #12274b 2px solid;
+.container-abolla {
+    height: 1fr;
+    display: flex;
+    overflow: hidden;
 }
 
-.navbar .collapse ul li:last-child{
-    margin-right: 5px;
+.img-abolla {
+    max-height: 100%;
+    width: 50%;
+    object-fit: contain;
 }
 
-.navbar .collapse ul li:hover{
-    background-color: white; /* rgba(238, 233, 233, 0.875); /* Opcional: color de fondo al pasar el mouse */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Opcional: sombra al pasar el mouse */
+.linea {
+    background-color: var(--primary);
+    width: 100%;
+    height: 5px;
 }
 
-header{
-    background-color: #12274b !important;
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el body siempre tenga al menos la altura de la ventana */
 }
 
-.hero{
-    background-image: url(../public/assets/img/header.webp);
-    background-size: 100% 100%;
-    /* background-position: center; */
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    
-}
-
-.dedo {
-    font-size: 45px;
-    position: absolute; 
-    bottom: 5px;
-    /* left: 50%; */
-    /* transform: translateX(-50%); */
-    display: inline-block;
-    color: #e74c3c;
-    animation: dedo 1s infinite;
-    filter: sepia(40%) saturate(400%) hue-rotate(0deg) brightness(1.1.1);
+.flex-grow-1 {
+    flex-grow: 1; /* Hace que el contenido principal crezca dinámicamente */
 }
 
 @keyframes dedo {
@@ -75,11 +62,8 @@ header{
 }
 
 
-@media (max-width: 992px) {
-    body {
-        padding-top: 80px; /* Ajusta este valor según la altura de tu navbar */
-        padding-bottom: 60px; /* Margen entre el footer y el contenido */
-    }
+@media (max-width: 980px) {
+
 
     .navbar-nav .nav-item {
         margin-right: 1rem; /* se asigna el margen de separación entre texto del menú */
@@ -89,4 +73,3 @@ header{
         border-right: none; /* Quitar el border-right en pantallas menores a 992px */
     }
 }
-
