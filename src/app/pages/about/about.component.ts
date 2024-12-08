@@ -7,7 +7,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [RouterLink, HeaderComponent, FooterComponent],
+  imports: [HeaderComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css',
   host: {ngSkipHydration: 'true'},

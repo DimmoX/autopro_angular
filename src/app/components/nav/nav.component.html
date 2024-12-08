@@ -1,4 +1,4 @@
-
+<!--
 <nav class="navbar navbar-expand-lg navbar-light transparent fixed-top">
     <a class="navbar-brand" routerLink="/home">
         <img src="assets/img/logo.webp" alt="Logo" width="125" height="70">
@@ -12,8 +12,70 @@
             <button class="nav-item btn"><a class="nav-link" routerLink="/about">Nosotros</a></button>
             <button class="nav-item btn"><a class="nav-link" routerLink="/services">Servicios</a></button>
             <button class="nav-item btn"><a class="nav-link" routerLink="/contact">Contacto</a></button>
+
+            Dropdown para usuario
+            <li class="nav-item dropdown" *ngIf="statusLogin">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ userName }} ({{ userRole }})
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" routerLink="/account">Cuenta</a></li>
+                    <li><a class="dropdown-item" routerLink="/services">Gestión de Servicios</a></li>
+                    <li><a class="dropdown-item" routerLink="/manage-accounts">Administrar Cuentas</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
+                </ul>
+            </li>
+
+            Botón para iniciar sesión
             <button class="nav-item btn" *ngIf="!statusLogin"><a class="nav-link" routerLink="/login">Iniciar Sesión</a></button>
-            <button class="nav-item btn" *ngIf="statusLogin"><a class="nav-link" (click)="logout()">Cerrar Sesión</a></button>
+        </ul>
+    </div>
+</nav>
+
+-->
+
+<nav class="navbar navbar-expand-lg navbar-light transparent fixed-top">
+    <a class="navbar-brand" routerLink="/home">
+        <img src="assets/img/logo.webp" alt="Logo" width="125" height="70">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+            <!-- Botones de navegación -->
+            <li class="nav-item border-end border-dark">
+                <a class="nav-link" routerLink="/home">Inicio</a>
+            </li>
+            <li class="nav-item border-end border-dark">
+                <a class="nav-link" routerLink="/about">Nosotros</a>
+            </li>
+            <li class="nav-item border-end border-dark">
+                <a class="nav-link" routerLink="/services">Servicios</a>
+            </li>
+            <li class="nav-item border-end border-dark">
+                <a class="nav-link" routerLink="/contact">Contacto</a>
+            </li>
+
+            <!-- Dropdown para usuario -->
+            <li class="nav-item dropdown" *ngIf="statusLogin">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ userName }} ({{ userRole }})
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" routerLink="/account">Cuenta</a></li>
+                    <li><a class="dropdown-item" routerLink="/services">Gestión de Servicios</a></li>
+                    <li><a class="dropdown-item" routerLink="/manage-accounts">Administrar Cuentas</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
+                </ul>
+            </li>
+
+            <!-- Botón para iniciar sesión -->
+            <li class="nav-item" *ngIf="!statusLogin">
+                <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
+            </li>
         </ul>
     </div>
 </nav>

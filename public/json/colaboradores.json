@@ -1,0 +1,18 @@
+[
+    {
+      "id": 1,
+      "nombre": "Diego",
+      "apellido": "Muñoz",
+      "email": "dmunozm@autopro.cl",
+      "passwd": "AB123456",
+      "role": ["admin", "tecnico"]
+    },
+    {
+      "id": 2,
+      "nombre": "Cristian",
+      "apellido": "Cepeda",
+      "email": "ccepeda@autopro.cl",
+      "passwd": "EF123456",
+      "role": ["tecnico"]
+    }
+  ]

@@ -1,0 +1,45 @@
+[
+    {
+        "id_informe" : 1,
+        "cliente": {
+          "nombre": "Ana Gómez",
+          "direccion": "Calle Falsa 456",
+          "telefono": "+56 9 8765 4321",
+          "email": "ana.gomez@example.com"
+        },
+        "vehiculo": {
+          "marca": "Ford",
+          "modelo": "Focus",
+          "anio": 2018,
+          "vin": "1FADP3F29JL123456",
+          "matricula": "EF456GH"
+        },
+        "estado_inicial": {
+          "kilometraje": 120000,
+          "niveles_fluido": {
+            "aceite_motor": "Normal",
+            "anticongelante": "Bajo",
+            "frenos": "Normal"
+          },
+          "neumaticos": {
+            "delanteros": "50% desgaste",
+            "traseros": "30% desgaste"
+          },
+          "observaciones_generales": "Vehículo con ruidos en la suspensión trasera"
+        },
+        "diagnostico_inicial": {
+          "problemas_detectados": [
+            "Desgaste en amortiguadores traseros",
+            "Fugas menores en mangueras de refrigerante"
+          ],
+          "recomendaciones": [
+            "Reemplazo de amortiguadores traseros",
+            "Reemplazo de mangueras de refrigerante"
+          ]
+        },
+        "observaciones_adicionales": {
+          "comentarios_cliente": "Solicito revisión completa del sistema de frenos",
+          "notas_tecnico": "Revisar sistema de frenos durante la inspección"
+        }
+      }
+]

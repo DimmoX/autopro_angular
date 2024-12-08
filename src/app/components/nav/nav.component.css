@@ -4,37 +4,45 @@
     background-color: rgba(255, 255, 255, 0.4);
 }
 
-.navbar .collapse ul button{
+.navbar .collapse ul li{
     position: relative;
     border-radius: 5%;
     margin-left: 5px;
 }
 
-.navbar .collapse ul button:not(:last-child){
+/* .navbar .collapse ul li:not(:last-child){
     border-right: var(--primary) 2px solid;
-}
+} */
 
-.navbar .collapse ul button:last-child{
+
+.navbar .collapse ul li:last-child{
     margin-right: 5px;
 }
 
-.navbar .collapse ul button:hover{
+.navbar .collapse ul li:hover{
     background-color: white; /* rgba(238, 233, 233, 0.875); /* Opcional: color de fondo al pasar el mouse */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Opcional: sombra al pasar el mouse */
 }
 
+@media (max-width: 768px) {
+    .custom-dropdown {
+        transform: translateX(-50px); /* Ajuste más agresivo en pantallas pequeñas */
+    }
+}
+
+
 @media(max-width: 500px){
-    .navbar .collapse ul button{
+    .navbar .collapse ul li{
         position: relative;
         border-radius: 5%;
         margin-left: 5px;
     }
     
-    .navbar .collapse ul button:not(:last-child){
+    /* .navbar .collapse ul li:not(:last-child){
         border-right: var(--primary) 2px solid;
-    }
+    } */
     
-    .navbar .collapse ul button:last-child{
+    .navbar .collapse ul li:last-child{
         margin-right: 5px;
     }
 
@@ -49,19 +57,19 @@
 
 @media(max-width: 380px){
 
-    .navbar .collapse ul button{
+    .navbar .collapse ul li{
         position: relative;
         border-radius: 5%;
         margin-left: 1px;
         
     }
     
-    .navbar .collapse ul button:not(:last-child){
+    /* .navbar .collapse ul li:not(:last-child){
         border: var(--primary) 1px solid;
         border-left: none;
-    }
+    } */
     
-    .navbar .collapse ul button:last-child{
+    .navbar .collapse ul li:last-child{
         margin-right: 2px;
     }
     

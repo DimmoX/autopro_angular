@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { LocalStorageService } from './../../services/local-storage.service';
 import { Component } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
+import { AuthService } from '../../services/autenticacion/auth.service';
+import { LocalStorageService } from '../../services/localStorage/local-storage.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,16 +11,38 @@ import { RouterLink, Router } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
-export class NavComponent {
+export class NavComponent{
 
-  statusLogin: boolean = false;
+  statusLogin: any | undefined;
+  userName: string = '';
+  userRole: string = '';
 
-  constructor(private localStorageService: LocalStorageService, private router: Router) {
-    this.statusLogin = this.localStorageService.getItem('login') || false;
+  constructor(private router: Router, private authService: AuthService, private localStorageService: LocalStorageService) {
+
+    this.authService.isAuthenticated$.subscribe((value) => {
+      this.statusLogin = value;
+
+      console.log("status login - nav", value);
+
+      if(value === true) {
+        let nombreUsuario = this.localStorageService.getItem('nombre');
+        let rolUsuario = this.localStorageService.getItem('role');
+       
+        this.userName = typeof nombreUsuario === 'string' ? nombreUsuario.replace(/"/g, '') : 'Usuario';
+        this.userRole = typeof rolUsuario === 'string' ? JSON.parse(rolUsuario)[0] : 'role';
+
+        console.log("nombre usuario", this.userName);
+        console.log("rol usuario", this.userRole);
+      }
+
+    });
+
   }
 
   logout() {
-    this.localStorageService.setItem('login', false);
+    this.authService.logout();
+    this.statusLogin = false;
+    console.log("status login - logout", this.statusLogin);
     this.router.navigate([`/home`]);
   }
 }

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "email": "jperez@test.cl",
+    "passwd": "CD123456",
+    "role": ["cliente"]
+  },
+  {
+    "id": 2,
+    "nombre": "Andres",
+    "apellido": "Gonzales",
+    "email": "agonzales@test.cl",
+    "passwd": "ZX678901",
+    "role": ["cliente"]
+  }
+]

@@ -1,4 +1,11 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>
+
+<div *ngIf="!isLoading">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="email" class="form-label">Correo Electrónico</label>
       <input
@@ -37,5 +44,6 @@
 
     <!-- Modal -->
      <app-recup-password></app-recup-password>
-</form>
+  </form>
   
+</div>

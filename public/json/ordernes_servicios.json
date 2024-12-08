@@ -1,0 +1,46 @@
+[
+  {
+    "id_orden" : 1,
+    "cliente": {
+      "nombre": "Juan Pérez",
+      "direccion": "Av. Siempre Viva 123",
+      "telefono": "+56 9 1234 5678",
+      "email": "juan.perez@example.com"
+    },
+    "vehiculo": {
+      "marca": "Toyota",
+      "modelo": "Corolla",
+      "anio": 2015,
+      "vin": "1HGBH41JXMN109186",
+      "matricula": "AB123CD"
+    },
+    "trabajo": {
+      "problema_reportado": "Ruidos en el motor",
+      "diagnostico_inicial": "Desgaste en la correa de distribución",
+      "tareas": [
+        "Reemplazo de la correa de distribución",
+        "Revisión de tensores y poleas"
+      ]
+    },
+    "piezas": [
+      {
+        "descripcion": "Correa de distribución",
+        "cantidad": 1,
+        "precio_unitario": 50.00
+      },
+      {
+        "descripcion": "Tensores",
+        "cantidad": 2,
+        "precio_unitario": 30.00
+      }
+    ],
+    "mano_obra": {
+      "horas_estimadas": 5,
+      "costo_por_hora": 20.00
+    },
+    "fechas": {
+      "inicio": "2024-12-01",
+      "fin_estimada": "2024-12-03"
+    }
+  }
+]

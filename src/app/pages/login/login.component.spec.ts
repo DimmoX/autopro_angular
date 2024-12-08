@@ -6,6 +6,8 @@ import { NavComponent } from '../../components/nav/nav.component';
 import { LoginFormComponent } from '../../components/formularios/login-form/login-form.component';
 import { RegistroClienteComponent } from '../../components/formularios/registro-cliente/registro-cliente.component';
 import { User } from '../../models/user.model';
+import { provideRouter } from '@angular/router';  // Importa provideRouter
+
 
 
 describe('LoginComponent', () => {
@@ -14,7 +16,10 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent, HeaderComponent, FooterComponent, NavComponent, LoginFormComponent, RegistroClienteComponent ]
+      imports: [ LoginComponent, HeaderComponent, FooterComponent, NavComponent, LoginFormComponent, RegistroClienteComponent ],
+      providers: [
+        provideRouter([])  // Proporciona el enrutador con una lista vacía de rutas
+      ]
     })
     .compileComponents();
   });

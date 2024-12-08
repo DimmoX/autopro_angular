@@ -1,28 +1,97 @@
 
-<form id="register-form">
+<form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" required>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="nombre" 
+            formControlName="nombre" 
+            placeholder="Ingresa tu nombre" 
+            [ngClass]="{ 'is-invalid': registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched }"
+            required
+        />
+        <div class="invalid-feedback">
+            <small>El nombre es obligatorio ****</small>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="apellido" 
+            formControlName="apellido" 
+            placeholder="Ingresa tu apellido" 
+            [ngClass]="{ 'is-invalid': registroForm.get('apellido')?.invalid && registroForm.get('apellido')?.touched }"
+            required
+        />
+        <div class="invalid-feedback">
+            <small>El apellido es obligatorio ****.</small>
+        </div>
     </div>
     <div class="mb-3">
         <label for="email-registro" class="form-label">Correo Electrónico</label>
-        <input type="email" class="form-control" id="email-registro" placeholder="Ingresa tu correo electrónico" required>
-        <div class="invalid-feedback">Por favor, ingrese un email válido.</div>
+        <input 
+            type="email" 
+            class="form-control" 
+            id="email-registro" 
+            formControlName="email-registro" 
+            placeholder="Ingresa tu correo electrónico" 
+            [ngClass]="{ 'is-invalid': registroForm.get('email-registro')?.invalid && registroForm.get('email-registro')?.touched }"
+            required
+        />
+        <div class="invalid-feedback">
+            <small *ngIf="registroForm.get('email-registro')?.errors?.['required']">
+                El correo es obligatorio.
+            </small>
+            <small *ngIf="registroForm.get('email-registro')?.errors?.['email']">
+                El correo no es válido.
+            </small>
+        </div>
     </div>
+
     <div class="mb-3">
         <label for="fecha-nac" class="form-label">Fecha de Nacimiento</label>
-        <input type="date" class="form-control" id="fecha-nac" required>
-        <div class="invalid-feedback">Debes ser mayor de 18 años.</div>
+        <input 
+            type="date" 
+            class="form-control" 
+            id="fecha-nac" 
+            formControlName="fecha-nac" 
+            [ngClass]="{ 'is-invalid': registroForm.get('fecha-nac')?.invalid && registroForm.get('fecha-nac')?.touched }"
+            required
+        />
+        <div class="invalid-feedback">
+            <small *ngIf="registroForm.get('fecha-nac')?.errors?.['required']">
+                La fecha de nacimiento es obligatoria.
+            </small>
+
+            <small *ngIf="registroForm?.get('fecha-nac')?.hasError('menorDeEdad')">
+                Debe ser mayor de 18 años.
+            </small>
+
+            <small *ngIf="registroForm?.get('fecha-nac')?.hasError('edadInvalida')">
+                La edad ingresada es incorrecta.
+            </small>
+        </div>
     </div>
     <div class="mb-3">
         <label for="passwd-registro" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="passwd-registro" placeholder="Ingresa tu contraseña" required>
-        <div class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, una mayúscula, un símbolo y al menos un número.</div>
+        <input 
+            type="password" 
+            class="form-control" 
+            id="passwd-registro" 
+            formControlName="passwd-registro" 
+            placeholder="Ingresa tu contraseña" 
+            [ngClass]="{ 'is-invalid': registroForm.get('passwd-registro')?.invalid && registroForm.get('passwd-registro')?.touched }"
+            required
+        />
+        <div class="invalid-feedback">
+            <small *ngIf="registroForm.get('passwd-registro')?.errors?.['required']">La contraseña es obligatoria.</small>
+            <small *ngIf="registroForm.get('passwd-registro')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</small>
+        </div>
+        <!-- <small class="invalid-feedback">La contraseña debe tener al menos 8 caracteres, una mayúscula, un símbolo y al menos un número.</small> -->
     </div>
-    <div class="mb-3">
-        <label for="confirmpass-registro" class="form-label">Confirmar Contraseña</label>
-        <input type="password" class="form-control" id="confirmpass-registro" placeholder="Confirma tu contraseña" required>
-        <div class="invalid-feedback">La contraseña no coincide.</div>
-    </div>
+
     <button type="submit" class="btn btn-primary w-100 mb-3">Registrarse</button>
 </form>

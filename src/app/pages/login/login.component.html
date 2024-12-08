@@ -7,8 +7,6 @@
     <title>AutoPro - Login</title>
 </head>
 <body>
-
-    <app-nav />
     
     <section class="mt-5 pt-5 ms-5 me-5">
         <app-header textHeader=
@@ -44,6 +42,7 @@
                                     </button>
                                 </div>
                                 <div *ngIf="showCreateAccountForm">
+
                                     <app-registro-cliente/>
                                     <button class="btn btn-primary w-100" (click)="toggleReturnLoginClientForm()">
                                         Volver
@@ -71,8 +70,6 @@
             </div>
         </main>
     </section>
-
-    <app-footer />
 
 </body>
 </html>

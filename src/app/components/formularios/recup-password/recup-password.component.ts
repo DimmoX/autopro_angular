@@ -1,29 +1,31 @@
+import { UsuariosService } from './../../../services/usuarios/usuarios.service';
 import { Component, AfterViewInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { LocalStorageService } from '../../../services/local-storage.service';
+// import { LocalStorageService } from '../../../services/localStorage/local-storage.service';
 import { User } from '../../../models/user.model';
+import { map, switchMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-recup-password',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './recup-password.component.html',
-  styleUrl: './recup-password.component.css'
+  styleUrl: './recup-password.component.css',
 })
 
 
 export class RecupPasswordComponent{
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(private UsuariosService: UsuariosService) {}
 
   email: string = '';
   password: string | null = null;
   errorMessage: string | null = null;
   private bootstrap: any = (window as any)['bootstrap'];
   static openModal: any;
-  tipoAcceso: string | undefined;
+  tipoAcceso: string = '';
 
   openModal() {
     const modalElement = document.getElementById('recoverPasswordModal');
@@ -35,22 +37,17 @@ export class RecupPasswordComponent{
 
     console.log(this.tipoAcceso)
 
-    let listUsers = this.tipoAcceso ? this.localStorageService.getItem(this.tipoAcceso) : null;
-
-    console.log("lista de usuarios", " tipo: " + this.tipoAcceso + " Lista: " + (listUsers ? JSON.stringify(listUsers) : 'null'));
-
-    if (Array.isArray(listUsers)) {
-      listUsers.forEach((user: User) => {
-        if (email === user.email) {
-          this.password = user.passwd;
-          this.errorMessage = null;
-        } else {
-          this.password = null;
-          this.errorMessage = 'Usuario no encontrado';
-        }
-      });
-    } else {
-      this.errorMessage = 'No se pudo recuperar la lista de usuarios';
-    }
+    this.UsuariosService.recuperarContrasena(email, this.tipoAcceso).subscribe({
+      next: (data) => {
+        console.log(data)
+        this.password = data;
+        this.errorMessage = null;
+      },
+      error: (error) => {
+        console.error(error);
+        this.errorMessage = error;
+        this.password = null;
+      }
+    });
   }
 }

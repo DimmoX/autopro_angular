@@ -1,25 +1,31 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../components/header/header.component';
 import { LoginFormComponent } from '../../components/formularios/login-form/login-form.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-import { NavComponent } from '../../components/nav/nav.component';
-import { RegistroClienteComponent } from '../../components/formularios/registro-cliente/registro-cliente.component';""
+import { RegistroClienteComponent } from '../../components/formularios/registro-cliente/registro-cliente.component';
 
 /**
- * @description Este componente es el encargado de mostrar el formulario de inicio de sesión
- * @class LoginComponent
- * @selector app-login
- * @class LoginComponent
+ * @description Componente que representa la página de inicio de sesión.
+ * @component
+ * @selector 'app-login'
+ * @standalone true
+ * @imports [CommonModule, NavComponent, HeaderComponent, FooterComponent, LoginFormComponent, RegistroClienteComponent]
+ * @templateUrl './login.component.html'
+ * @styleUrls ['./login.component.css']
+ * @host {ngSkipHydration: 'true'}
  */
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, NavComponent, HeaderComponent, FooterComponent, LoginFormComponent, RegistroClienteComponent],
+  imports: [CommonModule, HeaderComponent, LoginFormComponent, RegistroClienteComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   host: {ngSkipHydration: 'true'}
 })
+/**
+ * @description Clase que maneja el formulario de inicio de sesión y la lógica asociada al proceso de autenticación del usuario.
+ * @class LoginComponent
+ */
 export class LoginComponent {
 
   /**

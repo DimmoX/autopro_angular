@@ -1,13 +1,12 @@
-import { LoginComponent } from './../../../pages/login/login.component';
-import { LocalStorageService } from './../../../services/local-storage.service';
 import { Component, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecupPasswordComponent } from '../recup-password/recup-password.component';
-// import { LocalStorageService } from '../../../services/local-storage.service';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../../../services/autenticacion/auth.service';
+import { UsuariosService } from '../../../services/usuarios/usuarios.service';
+import { LocalStorageService } from '../../../services/localStorage/local-storage.service';
 
 @Component({
   selector: 'app-login-form',
@@ -19,41 +18,62 @@ import { Router } from '@angular/router';
 export class LoginFormComponent {
 
   @Input() tipoLista: string = '';
-
   @ViewChild(RecupPasswordComponent) recupPasswordComponent!: RecupPasswordComponent;
-  loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private localStorageService: LocalStorageService, private router: Router) {
+  loginForm: FormGroup;
+  isLoading: boolean = false; // Controla el estado del loader
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private usuariosService: UsuariosService,
+    private localStorageService: LocalStorageService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
+  
   onSubmit(): void {
-    console.log(this.loginForm.value);
     if (this.loginForm.valid) {
+      this.isLoading = true; // Se activa el loader
       const email: string = this.loginForm.get('email')?.value;
-      console.log(email);
-      console.log(this.tipoLista);
-      const usersList: Array<any> = this.localStorageService.getItem(this.tipoLista) || [];
-      console.log(usersList);
-      const dataUser = usersList.find((user) => user.email === email);
-      console.log(dataUser);
-      if(!dataUser){
-        alert('Cliente no encontrado');
-        return;
-      } 
+      let usersList: Array<any> = [];
 
-      const userExists = Object.keys(dataUser).length > 0 ? true : false;
-      console.log(userExists);
-      const roles = dataUser.role;
-      console.log(roles);
+      const request = this.tipoLista === 'clientes'
+        ? this.usuariosService.getClientes()
+        : this.usuariosService.getColaboradores();
 
-      this.localStorageService.setItem('login', true);
+      request.subscribe({
+        next: (data) => {
+          usersList = data || [];
+          const dataUser = usersList.find((user) => user.email === email);
 
-      this.router.navigate([`/dashboard/${roles[0]}`]);
-      
+          if(!dataUser) {
+            this.isLoading = false; // Se desactiva el loader
+            alert('Usuario no encontrado');
+            return;
+          }
+
+          this.localStorageService.setItem('nombre', dataUser.nombre);
+          this.localStorageService.setItem('apellido', dataUser.apellido);
+          this.localStorageService.setItem('email', dataUser.email);
+          this.localStorageService.setItem('role', dataUser.role);
+
+          const roles = dataUser.role;
+          this.authService.login();
+          this.isLoading = false; // Desactiva el loader
+          this.router.navigate([`/dashboard/${roles[0]}`]);
+        },
+        error: (err) => {
+          console.error('Error al obtener los datos', err);
+          alert('Hubo un error al obtener los datos');
+          this.isLoading = false; // Desactiva el loader
+        },
+      });
     }
   }
 
@@ -65,5 +85,4 @@ export class LoginFormComponent {
       console.error('No se pudo acceder al componente modal');
     }
   }
-
 }

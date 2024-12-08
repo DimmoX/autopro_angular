@@ -1,1 +1,84 @@
-<p>cliente works!</p>
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>AutoPro - administrador</title>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+    </head>
+
+    <body>
+        <section class="mt-5 pt-5 ms-5 me-5">
+           <app-header textHeader='
+                <h1>Bienvenido al Portal de Cliente</h1>
+            '/>
+            
+            <main>
+                <section class="welcome-section">
+                    <div class="container">
+                        <h1>¡Hola {{ nombreCliente }}!</h1>
+                        <p>Somo tu taller de confianza. Aquí puedes agendar tus citas, verificar el estado de tu vehículo y mucho más.</p>
+                    </div>
+                </section>
+
+                <article>
+                    <div class="container">
+                        <h2>Información de tu Vehículo</h2>
+                        <p>Marca: <strong>{{ marca }}</strong></p>
+                        <p>Modelo: <strong>{{ modelo }}</strong></p>
+                        <p>Año: <strong>{{ anio }}</strong></p>
+                        <p>Patente: <strong>{{ patente }}</strong></p>
+                    </div>
+                </article>
+                <section class="services-section">
+                    <div class="container">
+                        <h2>Agendar Cita</h2>
+                        <form action="/agendar" method="POST" class="appointment-form">
+                            <label for="service">Selecciona el servicio:</label>
+                            <select name="service" id="service" required>
+                                <option value="">-- Selecciona un servicio --</option>
+                                <option value="mantencion">Mantenimiento General</option>
+                                <option value="revision">Reparación</option>
+                                <option value="reparacion">Desabolladura y</option>
+                            </select>
+        
+                            <label for="date">Selecciona la fecha:</label>
+                            <input type="date" id="date" name="date" required>
+        
+                            <label for="time">Selecciona la hora:</label>
+                            <input type="time" id="time" name="time" required>
+        
+                            <button type="submit">Agendar</button>
+                        </form>
+                    </div>
+
+                    <div class="container">
+                        <h2>Estado de tu Vehículo</h2>
+                        <p>Tu vehículo actual está: <strong>[Estado del Vehículo]</strong></p>
+                        <a href="/estado-vehiculo" class="btn">Ver más detalles</a>
+                    </div>
+
+                    <div class="container">
+                        <h2>Servicios Destacados</h2>
+                        <ul class="services-list">
+                            <li>
+                                <h3>Revisión Técnica</h3>
+                                <p>Asegúrate de que tu vehículo cumple con los requisitos legales.</p>
+                            </li>
+                            <li>
+                                <h3>Reparación Mecánica</h3>
+                                <p>Reparaciones rápidas y confiables para cualquier tipo de avería.</p>
+                            </li>
+                            <li>
+                                <h3>Diagnóstico Electrónico</h3>
+                                <p>Identifica problemas con precisión utilizando tecnología avanzada.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </main>
+        </section>
+    </body>
+</html>
