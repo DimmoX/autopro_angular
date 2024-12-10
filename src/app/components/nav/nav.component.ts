@@ -22,8 +22,6 @@ export class NavComponent{
     this.authService.isAuthenticated$.subscribe((value) => {
       this.statusLogin = value;
 
-      console.log("status login - nav", value);
-
       if(value === true) {
         let nombreUsuario = this.localStorageService.getItem('nombre');
         let rolUsuario = this.localStorageService.getItem('role');
@@ -42,7 +40,6 @@ export class NavComponent{
   logout() {
     this.authService.logout();
     this.statusLogin = false;
-    console.log("status login - logout", this.statusLogin);
     this.router.navigate([`/home`]);
   }
 }

@@ -1,17 +1,19 @@
 [
     {
-      "id": 1,
+      "id_colaborador": 1,
       "nombre": "Diego",
       "apellido": "Muñoz",
       "email": "dmunozm@autopro.cl",
+      "telefono": "912345678",
       "passwd": "AB123456",
       "role": ["admin", "tecnico"]
     },
     {
-      "id": 2,
+      "id_colaborador": 2,
       "nombre": "Cristian",
       "apellido": "Cepeda",
       "email": "ccepeda@autopro.cl",
+      "telefono": "987654321",
       "passwd": "EF123456",
       "role": ["tecnico"]
     }

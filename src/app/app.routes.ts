@@ -5,7 +5,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-import { TestComponent } from './components/formularios/test/test.component';
+import { authGuard } from './guards/auth.guard';
 
 /**
  * @description este arreglo contiene las rutas de la aplicación
@@ -21,7 +21,6 @@ export const routes: Routes = [
     { path: 'services', component: ServicesComponent },
     { path: 'about', component: AboutComponent },
     { path: 'contact', component: ContactComponent },
-    { path: 'dashboard/:role', component: DashboardComponent },
-    { path: 'test', component: TestComponent },
+    { path: 'dashboard/:role', component: DashboardComponent, canActivate: [authGuard] },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

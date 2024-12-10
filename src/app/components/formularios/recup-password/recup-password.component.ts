@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 // import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 // import { LocalStorageService } from '../../../services/localStorage/local-storage.service';
-import { User } from '../../../models/user.model';
+import { User } from '../../../models/user/user.model';
 import { map, switchMap, of } from 'rxjs';
 
 @Component({

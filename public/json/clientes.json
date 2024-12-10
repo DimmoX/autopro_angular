@@ -1,17 +1,19 @@
 [
   {
-    "id": 1,
+    "id_cliente": 1,
     "nombre": "Juan",
     "apellido": "Perez",
     "email": "jperez@test.cl",
+    "telefono": "912345678",
     "passwd": "CD123456",
     "role": ["cliente"]
   },
   {
-    "id": 2,
+    "id_cliente": 2,
     "nombre": "Andres",
     "apellido": "Gonzales",
     "email": "agonzales@test.cl",
+    "telefono": "987654321",
     "passwd": "ZX678901",
     "role": ["cliente"]
   }

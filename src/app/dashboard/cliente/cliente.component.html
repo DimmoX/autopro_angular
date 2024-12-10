@@ -1,84 +1,259 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <title>AutoPro - administrador</title>
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-    </head>
 
-    <body>
         <section class="mt-5 pt-5 ms-5 me-5">
            <app-header textHeader='
+                <h1>¡Hola {{ nombreCliente }}!</h1>
                 <h1>Bienvenido al Portal de Cliente</h1>
             '/>
             
-            <main>
-                <section class="welcome-section">
-                    <div class="container">
-                        <h1>¡Hola {{ nombreCliente }}!</h1>
-                        <p>Somo tu taller de confianza. Aquí puedes agendar tus citas, verificar el estado de tu vehículo y mucho más.</p>
-                    </div>
-                </section>
+            <main class="container">
+                <section class="row">
+                    <!-- Perfil Usuario -->
+                    <!-- <section class="col-12 text-center mb-4">
+                    </section> -->
+               </section>
 
-                <article>
-                    <div class="container">
-                        <h2>Información de tu Vehículo</h2>
-                        <p>Marca: <strong>{{ marca }}</strong></p>
-                        <p>Modelo: <strong>{{ modelo }}</strong></p>
-                        <p>Año: <strong>{{ anio }}</strong></p>
-                        <p>Patente: <strong>{{ patente }}</strong></p>
-                    </div>
-                </article>
-                <section class="services-section">
-                    <div class="container">
+               <app-perfil />
+
+                <!-- Información de tu vehículo -->
+
+                <section class="row">
+                        <article class="col-lg-4 col-md-3 mb-4 col-sm-4">
+                            <div class="row">
+                                <h2 class="col-lg-6">Tú Vehículo</h2>
+
+                                    <button *ngIf="vehiculo && !editar" class="btn btn-link col-lg-6" (click)="editarInfoVehiculo()">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+
+                                    <button *ngIf="vehiculo && editar" class="btn btn-link col-lg-6" (click)="cerrarFormulario()">
+                                        <i class="bi bi-x fs-2"></i>
+                                    </button>
+                                      
+                            </div>
+                        
+                            <div *ngIf="vehiculo">
+                                <div *ngIf="!editar">
+                                
+                                <!-- Visualización de datos -->
+
+                                <p>Marca: <strong>{{ vehiculo!.marca }}</strong></p>
+                                <p>Modelo: <strong>{{ vehiculo!.modelo }}</strong></p>
+                                <p>Año: <strong>{{ vehiculo!.anio }}</strong></p>
+                                <p>Patente: <strong>{{ vehiculo!.patente }}</strong></p>
+                                <p>Color: <strong>{{ vehiculo!.color }}</strong></p>
+                                </div>
+                            </div>
+
+                            <div *ngIf="editar">
+                                <!-- Campos editables con validaciones -->
+                                <form [formGroup]="vehiculoForm" (ngSubmit)="grabarCamposVehiculo()">
+                                        
+                                    <!-- Marca -->
+
+                                    <label for="marca">Marca:</label>
+                                    <input 
+                                      type="text" 
+                                      id="marca" 
+                                      formControlName="marca"
+                                      [ngClass]="{ 'is-invalid': vehiculoForm.get('marca')?.invalid && vehiculoForm.get('marca')?.touched }"
+                                      name="marca" 
+                                      class="form-control" 
+                                      required 
+                                      (blur)="vehiculoForm.controls['marca'].markAsTouched()"
+                                    />
+                                    <div *ngIf="vehiculoForm.controls['marca']?.touched || vehiculoForm.controls['marca']?.invalid" class="invalid-feedback">
+                                      <small *ngIf="vehiculoForm.controls['marca']?.hasError('required')">La marca es obligatoria.</small>
+                                    </div>
+                                  
+                                    <!-- Modelo -->
+
+                                    <label for="modelo">Modelo:</label>
+                                    <input 
+                                      type="text" 
+                                      id="modelo" 
+                                      formControlName="modelo" 
+                                      [ngClass]="{ 'is-invalid': vehiculoForm.get('modelo')?.invalid && vehiculoForm.get('modelo')?.touched }"
+                                      name="modelo" 
+                                      class="form-control" 
+                                      required 
+                                      (blur)="vehiculoForm.controls['modelo'].markAsTouched()"
+                                    />
+                                    <div *ngIf="vehiculoForm.get('modelo')?.invalid && vehiculoForm.get('modelo')?.touched" class="invalid-feedback">
+                                      <small *ngIf="vehiculoForm.controls['modelo']?.errors?.['required']">El modelo es obligatorio.</small>
+                                    </div>
+                                  
+                                    <!-- Año -->
+
+                                    <label for="anio">Año:</label>
+                                    <input 
+                                      type="number" 
+                                      id="anio" 
+                                      formControlName="anio"
+                                      [ngClass]="{ 'is-invalid': vehiculoForm.get('anio')?.invalid && vehiculoForm.get('anio')?.touched }"
+                                      class="form-control" 
+                                      required 
+                                      min="1900" 
+                                      max={{anioActual}}
+                                    />
+                                    <div *ngIf="vehiculoForm.get('anio')?.invalid && vehiculoForm.get('anio')?.touched" class="invalid-feedback">
+                                      <small *ngIf="vehiculoForm.controls['anio']?.errors?.['required']">El año es obligatorio.</small>
+                                      <small *ngIf="vehiculoForm.controls['anio']?.errors?.['min']">El año debe ser posterior a 1900.</small>
+                                      <small *ngIf="vehiculoForm.controls['anio']?.errors?.['max']">El año debe ser menor que 2100.</small>
+                                    </div>
+                                  
+                                    <!-- Patente -->
+
+                                    <label for="patente">Patente:</label>
+                                    <input 
+                                      type="text" 
+                                      id="patente" 
+                                      formControlName="patente"
+                                      [ngClass]="{ 'is-invalid': vehiculoForm.get('patente')?.invalid && vehiculoForm.get('patente')?.touched }"
+                                      name="patente" 
+                                      class="form-control" 
+                                      required 
+                                      pattern="^[A-Z0-9]{4,6}$" 
+                                      (blur)="vehiculoForm.controls['patente'].markAsTouched()"
+                                      (input)="vehiculoForm.get('patente')?.setValue(vehiculoForm.get('patente')?.value.toUpperCase())"
+                                    />
+                                    <div *ngIf="vehiculoForm.get('patente')?.invalid && vehiculoForm.get('patente')?.touched" class="invalid-feedback">
+                                      <small *ngIf="vehiculoForm.controls['patente']?.errors?.['required']">La patente es obligatoria.</small>
+                                      <small *ngIf="vehiculoForm.controls['patente']?.errors?.['pattern']">La patente debe tener entre 4 y 6 caracteres alfanuméricos.</small>
+                                    </div>
+                                  
+                                    <!-- Color -->
+
+                                    <label for="color">Color:</label>
+                                    <input 
+                                      type="text" 
+                                      id="color" 
+                                      formControlName="color"
+                                      [ngClass]="{ 'is-invalid': vehiculoForm.get('color')?.invalid && vehiculoForm.get('color')?.touched }"
+                                      name="color" 
+                                      class="form-control" 
+                                      required 
+                                      (blur)="vehiculoForm.controls['color'].markAsTouched()"
+                                    />
+                                    <div *ngIf="vehiculoForm.get('color')?.invalid && vehiculoForm.get('color')?.touched" class="invalid-feedback">
+                                      <small *ngIf="vehiculoForm.controls['color']?.errors?.['required']">El color es obligatorio.</small>
+                                    </div>
+                                  
+                                    <!-- Botón para guardar -->
+
+                                    <div class="text-center">
+                                      <button type="submit" class="btn btn-primary mt-3 w-50" [disabled]="vehiculoForm.invalid">Guardar</button>
+                                    </div>
+                                  </form>
+                            </div>
+
+                            <div *ngIf="!vehiculo">
+                                <p>No tienes vehículo registrado</p>
+                                <button class="btn btn-primary" (click)="agregarVehiculo()">Agregar Vehículo</button>
+                            </div>
+                        </article>
+  
+                    <!-- Agendar Cita -->
+
+                    <section class="col-12 col-md-4 col-lg-4 mb-4">
                         <h2>Agendar Cita</h2>
-                        <form action="/agendar" method="POST" class="appointment-form">
-                            <label for="service">Selecciona el servicio:</label>
-                            <select name="service" id="service" required>
-                                <option value="">-- Selecciona un servicio --</option>
-                                <option value="mantencion">Mantenimiento General</option>
-                                <option value="revision">Reparación</option>
-                                <option value="reparacion">Desabolladura y</option>
-                            </select>
-        
-                            <label for="date">Selecciona la fecha:</label>
-                            <input type="date" id="date" name="date" required>
-        
-                            <label for="time">Selecciona la hora:</label>
-                            <input type="time" id="time" name="time" required>
-        
-                            <button type="submit">Agendar</button>
+                        <form [formGroup]="servicioForm" (ngSubmit)="agendarServicio()">
+                            <div class="mb-3">
+                                <div class="d-flex flex-column gap-2">
+                                    <label for="service">Tipo de servicio:</label>
+                                    <select 
+                                        class="form-select col-lg-6" 
+                                        id="service" 
+                                        formControlName="service"
+                                        [ngClass]="{ 'is-invalid': servicioForm.get('service')?.invalid && vehiculoForm.get('service')?.touched }"
+                                        required
+                                    >
+                                        <option value="none">-- Selecciona un servicio --</option>
+                                        <option value="mantencion">Mantenimiento General</option>
+                                        <option value="revision">Reparación</option>
+                                        <option value="reparacion">Desabolladura y Pintura</option>
+                                    </select>
+                                </div>
+                                <div *ngIf="servicioForm.controls['service']?.touched || servicioForm.controls['service'] && servicioForm.controls['service']?.value === 'none'" class="invalid-feedback">
+                                    Debe seleccionar un servicio
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex flex-column gap-2">
+                                    <label for="date">Seleccionar fecha:</label>
+                                    <input 
+                                        type="date" 
+                                        id="date" 
+                                        name="date" 
+                                        formControlName="date"
+                                        [ngClass]="{ 'is-invalid': servicioForm.get('date')?.invalid && vehiculoForm.get('date')?.touched }" 
+                                        class="form-control col-12 col-lg-6" 
+                                        [attr.min]="fechaMinima"
+                                        [attr.max]="fechaMaxima"
+                                        (focusout)="fechaControl?.markAsTouched()"
+                                        required 
+                                    />
+                                </div>
+                                <div
+                                    *ngIf="fechaControl?.invalid && fechaControl?.touched"
+                                    class="text-danger"
+                                >
+                                    <small *ngIf="fechaControl?.errors?.['fechaMinimaInvalida']">
+                                        La fecha debe ser igual o posterior a {{ fechaMinima | date: 'dd/MM/yyyy' }}.
+                                    </small>
+                                    <small *ngIf="fechaControl?.errors?.['fechaMaximaInvalida']">
+                                        La fecha no debe ser posterior a {{ fechaMaxima | date: 'dd/MM/yyyy' }}.
+                                    </small>
+                                    <small *ngIf="fechaControl?.errors?.['required']">
+                                        La fecha es obligatoria.
+                                    </small>
+                                    </div>
+                                </div>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex flex-column gap-2">
+                                    <label for="time">Seleccionar hora:</label>
+                                    <input 
+                                        type="time" 
+                                        id="time" 
+                                        name="time" 
+                                        formControlName="time"
+                                        [ngClass]="{ 'is-invalid': servicioForm.get('time')?.invalid && servicioForm.get('time')?.touched }"
+                                        class="form-control col-12 col-lg-6" 
+                                        required 
+                                    />
+                                </div>
+                                <div
+                                    *ngIf="servicioForm.get('time')?.invalid && servicioForm.get('time')?.touched"
+                                    class="text-danger"
+                                >
+                                    <small *ngIf="servicioForm.get('time')?.errors?.['horaFueraDeRango']">
+                                    La hora debe estar entre las 08:30 AM y 17:30 PM.
+                                    </small>
+                                    <small *ngIf="servicioForm.get('time')?.errors?.['required']">
+                                    La hora es obligatoria.
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button class="btn btn-primary w-100" type="submit" [disabled]="servicioForm.invalid">Agendar</button>
+                            </div>
+                            
                         </form>
-                    </div>
+                    </section>
 
-                    <div class="container">
-                        <h2>Estado de tu Vehículo</h2>
-                        <p>Tu vehículo actual está: <strong>[Estado del Vehículo]</strong></p>
-                        <a href="/estado-vehiculo" class="btn">Ver más detalles</a>
-                    </div>
 
-                    <div class="container">
-                        <h2>Servicios Destacados</h2>
-                        <ul class="services-list">
-                            <li>
-                                <h3>Revisión Técnica</h3>
-                                <p>Asegúrate de que tu vehículo cumple con los requisitos legales.</p>
-                            </li>
-                            <li>
-                                <h3>Reparación Mecánica</h3>
-                                <p>Reparaciones rápidas y confiables para cualquier tipo de avería.</p>
-                            </li>
-                            <li>
-                                <h3>Diagnóstico Electrónico</h3>
-                                <p>Identifica problemas con precisión utilizando tecnología avanzada.</p>
-                            </li>
-                        </ul>
-                    </div>
+                    <section class="col-lg-4 col-md-3 col-sm-4">
+                        <div class="d-flex flex-column gap-4">
+                            <article class="row-lg-6">
+                                <h2>Estado de Servicio</h2>
+                                <p>Tu vehículo está: <strong>{{!estadoServicio ? 'Sin Servicio' : estadoServicio}}</strong></p>
+                                <button class="btn btn-link">Ver más detalles</button>
+                            </article>
+                        </div>
+                    </section>    
+
                 </section>
             </main>
         </section>
-    </body>
-</html>

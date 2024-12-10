@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuariosService } from '../../../services/usuarios/usuarios.service';
-import { User } from '../../../models/user.model';
+import { User } from '../../../models/user/user.model';
 
 @Component({
   selector: 'app-registro-cliente',
@@ -20,6 +20,7 @@ export class RegistroClienteComponent {
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       'email-registro': ['', [Validators.required, Validators.email]],
+      telefono: ['', [Validators.required, Validators.pattern(/^[0-9]{9}$/)]],
       'fecha-nac': ['', [Validators.required, this.validarEdad]],
       'passwd-registro': ['', [Validators.required, Validators.minLength(8)]],
     });
@@ -48,11 +49,12 @@ export class RegistroClienteComponent {
       console.log(this.registroForm.value);
 
       let nuevoCliente: User = {
-        id: 0, // <- se inicializa en 0
+        id_cliente: 0, // <- se inicializa en 0
         nombre: this.registroForm.value.nombre,
         apellido: this.registroForm.value.apellido,
         email: this.registroForm.value['email-registro'],
         passwd: this.registroForm.value['passwd-registro'],
+        telefono: this.registroForm.value.telefono,
         role: ['cliente']
       }
 

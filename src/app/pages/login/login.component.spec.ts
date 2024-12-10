@@ -5,7 +5,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { NavComponent } from '../../components/nav/nav.component';
 import { LoginFormComponent } from '../../components/formularios/login-form/login-form.component';
 import { RegistroClienteComponent } from '../../components/formularios/registro-cliente/registro-cliente.component';
-import { User } from '../../models/user.model';
+import { User } from '../../models/user/user.model';
 import { provideRouter } from '@angular/router';  // Importa provideRouter
 
 

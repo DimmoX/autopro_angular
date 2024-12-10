@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LocalStorageService } from './services/localStorage/local-storage.service';
 
 /**
  * @description Componente principal de la aplicación
@@ -16,5 +17,9 @@ import { FooterComponent } from './components/footer/footer.component';
 })
 export class AppComponent{
   title = 'AutoPro';
+
+  constructor(private localStorageService: LocalStorageService) {
+    this.localStorageService.setItem('authToken', false);
+  }
 
 }

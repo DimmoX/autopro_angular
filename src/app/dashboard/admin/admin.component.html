@@ -1,120 +1,81 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <title>AutoPro - administrador</title>
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-    </head>
 
-    <body>
-        <section class="mt-5 pt-5 ms-5 me-5">
-           <app-header textHeader='
-                <h1>Bienvenido al Portal Administrador</h1>
-            '/>
+    <section class="mt-5 pt-5 ms-5 me-5">
+        <app-header textHeader='
+            <h1>Bienvenido al Portal Administrador</h1>
+        '/>
+    </section>
+  <div class="container-fluid">
+
+    <div class="row mt-4">
+      <!-- Contenido principal -->
+      <div class="col-md-12">
+        <div class="card border-0">
+          <!-- Perfil Usuario -->
+          <section class="container mb-4">
+            <h2>Tu Perfil</h2>
+            <div *ngIf="!editarPerfil">
+              <div class="row text-center">
+                <p class="col-lg-4">Nombre: <strong>{{ nombreCompletoUsuario }}</strong></p>
+                <p class="col-lg-4">Correo: <strong>{{ emailUsuario }}</strong></p>
+                <p class="col-lg-4">Teléfono: <strong>{{ telefonoUsuario }}</strong></p>
+              </div>
+              <button class="btn btn-link" (click)="toggleEditarPerfil()">Editar Perfil</button>
+            </div>
             
-            <main class="mt-3">
-                    <h2>Gestion de Servicio</h2>
-                    <p>En esta sección podrás gestionar los servicios.</p>
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre Cliente</th>
-                            <th scope="col">modelo Veh&iacute;culo</th>
-                            <th scope="col">Patente</th>
-                            <th scope="col">Tipo De Servicio</th>
-                            <th scope="col">Fecha Ingreso</th>
-                            <th scope="col">T&eacute;cnico Asignado</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Orden Servicio</th>
-                            <th scope="col">Acciones</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td><input type="text" value="Cristian Mansilla" disabled /></td>
-                            <td><input type="text" value="Toyota Yaris" disabled /></td>
-                            <td><input type="text" id="patente" value="AB1234" disabled /></td>
-                            <td><input type="text" value="Cambio de aceite" disabled /></td>
-                            <td><input type="date" value="2024-11-04" disabled /></td>
-                            <td><input type="text" value="Javier Sanchez" disabled /></td>
-                            <td><input type="text" value="Pendiente" disabled /></td>
-                            <td class="text-center">
-                                <button class="btn btn-link" >
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-link" >
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-link" (click)="eliminarFila($event)">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td><input type="text" value="Jacob" disabled /></td>
-                            <td><input type="text" value="Nissan Kicks" disabled /></td>
-                            <td><input type="text" id="patente" value="CD1234" disabled /></td>
-                            <td><input type="text" value="Mantenci&oacute;n 20.000KM" disabled /></td>
-                            <td><input type="date" value="2024-11-04" disabled /></td>
-                            <td><input type="text" value="@fat" disabled /></td>
-                            <td><input type="text" value="@mdo" disabled /></td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-link" >
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-link" >
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td><input type="text" value="Larry the Bird" disabled /></td>
-                            <td><input type="text" value="Chevrolet Spark" disabled /></td>
-                            <td><input type="text" id="patente" value="EF1234" disabled /></td>
-                            <td><input type="text" value="Mantenci&oacute;n 10.000KM" disabled /></td>
-                            <td><input type="date" value="2024-11-04" disabled /></td>
-                            <td><input type="text" value="@mdo" disabled /></td>
-                            <td><input type="text" value="@twitter" disabled /></td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-link" >
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-link" >
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-            </main>
-        </section>
-    </body>
-</html>
+            <div *ngIf="editarPerfil">
+              <form [formGroup]="perfilForm" (ngSubmit)="guardarPerfil()">
+                <div class="row text-center">
+                  <div class="col-lg-3">
+                    <label for="nombre">Nombre:</label>
+                    <input id="nombre" formControlName="nombre" class="form-control" />
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="apellido">Apellido:</label>
+                    <input id="apellido" formControlName="apellido" class="form-control" />
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="email">Correo:</label>
+                    <input id="email" formControlName="email" class="form-control" />
+                  </div>
+                  <div class="col-lg-3">
+                    <label for="telefono">Teléfono:</label>
+                    <input id="telefono" formControlName="telefono" class="form-control" />
+                  </div>
+                </div>
+                <div class="mt-3 d-flex gap-4 justify-content-center">
+                  <button type="submit" class="btn btn-primary w-25" [disabled]="perfilForm.invalid">Guardar</button>
+                  <button type="button" class="btn btn-secondary w-25" (click)="cancelarEdicion()">Cancelar</button>
+                </div>
+              </form>
+            </div>
+              
+          </section>
+          <div class="card-body">
+            <div class="row justify-content-center gap-5">
+              <div class="col-md-4">
+                <div class="card text-white mb-3" id="card">
+                  <div class="card-header">Órdenes de servicio</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Gestiona las órdenes de servicio</h5>
+                    <p class="card-text">Ver, crear, editar y eliminar órdenes de servicio en el taller.</p>
+                    <a href="#" class="btn btn-light">Ir a Órdenes</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card text-white mb-3" id="card">
+                  <div class="card-header">Gestión de usuarios</div>
+                  <div class="card-body">
+                    <h5 class="card-title">Gestiona los usuarios del taller</h5>
+                    <p class="card-text">Crear, modificar y eliminar usuarios que gestionan el taller.</p>
+                    <a href="#" class="btn btn-light">Ir a Usuarios</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

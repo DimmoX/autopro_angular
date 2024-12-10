@@ -1,0 +1,11 @@
+[
+  {
+      "id_orden": 1,
+      "id_cliente": 1,
+      "id_vehiculo": 1,
+      "tipo_servicio": "Mantenimiento",
+      "fecha_ingreso": "2024-12-01",
+      "comenario": "Ruidos en el motor",
+      "id_tecnico": 2
+  }
+]

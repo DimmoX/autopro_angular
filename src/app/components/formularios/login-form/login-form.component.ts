@@ -32,7 +32,7 @@ export class LoginFormComponent {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(12)]]
     });
   }
 
@@ -41,6 +41,7 @@ export class LoginFormComponent {
     if (this.loginForm.valid) {
       this.isLoading = true; // Se activa el loader
       const email: string = this.loginForm.get('email')?.value;
+      const password: string = this.loginForm.get('password')?.value;
       let usersList: Array<any> = [];
 
       const request = this.tipoLista === 'clientes'
@@ -50,7 +51,7 @@ export class LoginFormComponent {
       request.subscribe({
         next: (data) => {
           usersList = data || [];
-          const dataUser = usersList.find((user) => user.email === email);
+          const dataUser = usersList.find((user) => user.email === email && user.passwd === password);
 
           if(!dataUser) {
             this.isLoading = false; // Se desactiva el loader
@@ -58,10 +59,16 @@ export class LoginFormComponent {
             return;
           }
 
+          this.tipoLista === 'clientes' ? 
+            this.localStorageService.setItem('id_usuario', dataUser.id_cliente) 
+          : 
+            this.localStorageService.setItem('id_usuario', dataUser.id_colaborador)
+          
           this.localStorageService.setItem('nombre', dataUser.nombre);
           this.localStorageService.setItem('apellido', dataUser.apellido);
           this.localStorageService.setItem('email', dataUser.email);
           this.localStorageService.setItem('role', dataUser.role);
+          this.localStorageService.setItem('telefono', dataUser.telefono);
 
           const roles = dataUser.role;
           this.authService.login();

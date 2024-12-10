@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
-import { User } from '../../models/user.model';
+import { User } from '../../models/user/user.model';
 
 /**
  * @description Servicio para obtener y manipular la información de los usuarios.
@@ -20,10 +20,10 @@ import { User } from '../../models/user.model';
  * 
  * // ** Crear un nuevo cliente **
  * const nuevoCliente = {
- *   nombre: 'Juan Pérez',
+ *   nombre: 'Juan',
+ *   apellido: 'Pérez',
  *   email: 'juan.perez@example.com',
  *   telefono: '123456789',
- *   direccion: 'Av. Siempreviva 742'
  * };
  * this.usuariosService.crearClientes(nuevoCliente).subscribe(response => {
  *   console.log('Cliente creado:', response);
@@ -94,7 +94,7 @@ export class UsuariosService {
       return this.getClientes().pipe(
         map((clientes: Array<object>) => {
           console.log('Clientes obtenidos:', clientes);
-          objetoCliente.id = clientes.length + 1; // Asignar el nuevo ID
+          objetoCliente.id_cliente = clientes.length + 1; // Asignar el nuevo ID
           clientes.push(objetoCliente); // Agregar el nuevo cliente
           return clientes;
         }),
@@ -160,10 +160,15 @@ export class UsuariosService {
       // Actualizar el cliente
       map(listaClientes => {
         const clienteIndex = listaClientes.findIndex(cliente => cliente.id === id);
+
         if (clienteIndex === -1) {
           throw new Error('Cliente no encontrado');
         }
-        listaClientes[clienteIndex] = { ...listaClientes[clienteIndex], ...nuevosDatos };
+        listaClientes[clienteIndex].nombre = nuevosDatos.nombre;
+        listaClientes[clienteIndex].apellido = nuevosDatos.apellido;
+        listaClientes[clienteIndex].email = nuevosDatos.email;
+        listaClientes[clienteIndex].telefono = nuevosDatos.telefono;
+        // listaClientes[clienteIndex] = { ...listaClientes[clienteIndex], ...nuevosDatos };
         return listaClientes;
       }),
       // Subir la lista actualizada al bucket

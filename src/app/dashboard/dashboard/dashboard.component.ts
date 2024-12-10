@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent} from '../admin/admin.component';
 import { ClienteComponent } from '../cliente/cliente.component';
 import { TecnicoComponent } from '../tecnico/tecnico.component';
+import { PerfilComponent } from '../../components/perfil/perfil.component';
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, AdminComponent, ClienteComponent, TecnicoComponent],
+  imports: [CommonModule, AdminComponent, ClienteComponent, TecnicoComponent, PerfilComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

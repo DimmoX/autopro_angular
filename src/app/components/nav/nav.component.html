@@ -63,13 +63,27 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ userName }} ({{ userRole }})
                 </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" routerLink="/account">Cuenta</a></li>
-                    <li><a class="dropdown-item" routerLink="/services">Gestión de Servicios</a></li>
-                    <li><a class="dropdown-item" routerLink="/manage-accounts">Administrar Cuentas</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
-                </ul>
+                <div *ngIf="userRole === 'cliente'">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" routerLink="/dashboard/cliente">Cuenta</a></li>
+                        <li><a class="dropdown-item" routerLink="/dashboard/perfil">Perfil</a></li>
+                        <li><a class="dropdown-item" routerLink="/services">Estado de servicio</a></li>
+                        <li><a class="dropdown-item" routerLink="/services">historial de servicios</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+
+                <div *ngIf="userRole === 'admin'">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" routerLink="/account">Cuenta</a></li>
+                        <li><a class="dropdown-item" routerLink="/services">Gestión de Servicios</a></li>
+                        <li><a class="dropdown-item" routerLink="/manage-accounts">Administrar Cuentas</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+                
             </li>
 
             <!-- Botón para iniciar sesión -->

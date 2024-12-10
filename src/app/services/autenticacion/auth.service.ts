@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { signal } from '@angular/core';
 import { LocalStorageService } from './../localStorage/local-storage.service';
 import { BehaviorSubject } from 'rxjs';
 
@@ -9,23 +8,24 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   private _isAuthenticated = new BehaviorSubject<boolean>(false);
+  private localStorageService = new LocalStorageService();
 
   isAuthenticated$ = this._isAuthenticated.asObservable();
+
+  isAuthenticated(): boolean {
+    // Aquí verifica si el usuario está autenticado
+    return this.localStorageService.getItem('authToken') === 'true';
+  }
   
   login() {
     // lógica para autenticar al usuario
+    this.localStorageService.setItem('authToken', true);
     this._isAuthenticated.next(true);
-
-    this.isAuthenticated$.subscribe(value => {
-      console.log('Usuario autenticado', value);
-    });
   }
   logout() {
     // lógica para cerrar sesión del usuario
-    this._isAuthenticated.next(false);
 
-    this.isAuthenticated$.subscribe(value => {
-      console.log('Usuario desautenticado', value);
-    });
+    this.localStorageService.removeItem('authToken');
+    this._isAuthenticated.next(false);
   }
 }

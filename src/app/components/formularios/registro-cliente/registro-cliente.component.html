@@ -52,6 +52,27 @@
     </div>
 
     <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input 
+            type="tel" 
+            class="form-control" 
+            id="telefono" 
+            formControlName="telefono" 
+            placeholder="Ingresa tu teléfono" 
+            [ngClass]="{ 'is-invalid': registroForm.get('telefono')?.invalid && registroForm.get('telefono')?.touched }"
+            required
+        />
+        <div class="invalid-feedback">
+            <small *ngIf="registroForm.get('telefono')?.errors?.['required']">
+                El teléfono es obligatorio.
+            </small>
+            <small *ngIf="registroForm.get('telefono')?.errors?.['pattern']">
+                El teléfono no es válido.
+            </small>
+        </div>
+    </div>
+
+    <div class="mb-3">
         <label for="fecha-nac" class="form-label">Fecha de Nacimiento</label>
         <input 
             type="date" 
